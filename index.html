@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        ul {
+            display: flex;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+            padding: 0 20px 0 0;
+        }
+
+        .small img {
+            cursor: pointer;
+            min-width: 360px;
+            height: 230px;
+        }
+
+        .big img {
+            cursor: pointer;
+            min-width: 500px;
+            height: auto;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <ul class="small"> </ul>
+    <div class="big"> </div>
+
+    <script>
+        const SMALL = document.querySelector('.small');
+        const BIG = document.querySelector('.big');
+        const image = [
+            { img: { src: 'minsk1.jpg', title: 'Костел', bigTitle: 'Это большой Красный Костел в Минске' } },
+            { img: { src: 'minsk2.jpg', title: 'Троицкое', bigTitle: 'Это Троицкое предместье в Минске' } },
+            { img: { src: 'mir.gif', title: 'Мир', bigTitle: 'Это большой Мирский замок' } },
+        ];
+
+        for (i = 0; i < image.length; i++) {
+            let item = document.createElement('li');
+            SMALL.append(item);
+        }
+
+        document.querySelectorAll('.small > li').forEach((elem, index) => {
+            let img = document.createElement('img');
+            img.src = `../images/${image[index]['img']['src']}`;
+            // alert(image[index]['img']['title']);
+            let title = document.createElement('h3');
+            title.innerHTML = `${image[index]['img']['title']}`;
+
+            elem.append(img);
+            elem.append(title);
+
+            elem.addEventListener('click', function () {
+                let img = document.createElement('img');
+                img.src = `../images/${image[index]['img']['src']}`;
+
+                let bigTitle = document.createElement('h3');
+                bigTitle.innerHTML = `${image[index]['img']['bigTitle']}`;
+
+                BIG.innerHTML = '';
+                BIG.append(img);
+                BIG.append(bigTitle);
+
+            })
+
+        })
+
+        BIG.addEventListener('click', function () {
+            BIG.innerHTML = '';
+        })
+
+
+    </script>
+
+</body>
+
+</html>
